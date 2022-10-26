@@ -1,14 +1,15 @@
 import React from 'react'
-import { useLibro } from '../Context/Contexto'
+import { useProductos } from '../Context/Contexto'
 import { useNavigate } from 'react-router-dom'
 
 
 const Crear = () => {
-  const { nombre, edicion, autor, setNombre, setAutor, setEdicion, datosLibro} = useLibro();
+  const { codigo, setCodigo, descripcion, setDescripcion, existencia, setExistencia, 
+    entradas, setEntradas, salidas,setSalidas,stock, setStock, datosProductos} = useProductos();
   const navigate = useNavigate()
 
-  const crearLibro = async(e) =>{
-    await datosLibro(e)
+  const crearProducto = async(e) =>{
+    await datosProductos(e)
     navigate('/')
   }
   
@@ -17,40 +18,49 @@ const Crear = () => {
     <div className='container'>
         <div className='row'>
             <div className='col'>
-                <h1>Agregar Nuevo Libro</h1>
+                <h1>Agregar Nuevo Producto</h1>
 
-                <form onSubmit={crearLibro}>
+                <form onSubmit={crearProducto}>
                     <div className='mb-3'>
-                        <label className='form-label'>Nombre</label>
+                        <label className='form-label'>Codigo Producto</label>
                         <input
-                            value={nombre}
-                            onChange={ (e) => setNombre(e.target.value)}
+                            value={codigo}
+                            onChange={ (e) => setCodigo(e.target.value)}
                             type='text'
                             className= 'form-control'
                         />
                     </div>
 
                     <div className='mb-3'>
-                        <label className='form-label'>Edición</label>
+                        <label className='form-label'>Descripcion</label>
                         <input
-                            value={edicion}
-                            onChange={ (e) => setEdicion(e.target.value)}
+                            value={descripcion}
+                            onChange={ (e) => setDescripcion(e.target.value)}
                             type='text'
                             className= 'form-control'
                         />
                     </div>
 
                     <div className='mb-3'>
-                        <label className='form-label'>Autor</label>
+                        <label className='form-label'>Existencias Iniciales</label>
                         <input
-                            value={autor}
-                            onChange={ (e) => setAutor(e.target.value)}
+                            value={existencia}
+                            onChange={ (e) => setExistencia(e.target.value)}
+                            type='text'
+                            className= 'form-control'
+                        />
+                    </div>
+                    <div className='mb-3'>
+                        <label className='form-label'>Stock</label>
+                        <input
+                            value={stock}
+                            onChange={ (e) => setStock(e.target.value)}
                             type='text'
                             className= 'form-control'
                         />
                     </div>
 
-                    <button type='submit' className='btn btn-primary'>Crear</button>
+                    <button type='submit' className='btn btn-primary'>Añadir Nuevo Producto</button>
                     
 
 
