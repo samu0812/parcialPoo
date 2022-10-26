@@ -1,23 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import Show from './Components/Show';
+import Editar from './Components/Editar';
+import Crear from './Components/Crear';
+
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import  ContextoProvider  from './Context/Contexto';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <>
+        <ContextoProvider>
+          <BrowserRouter>
+          <Routes>
+            <Route path= '/' element={ <Show/>}/>
+            <Route path= '/crear' element={ <Crear/>}/>
+            <Route path= '/editar/:id' element={ <Editar/>}/>
+          </Routes>
+          </BrowserRouter>
+        </ContextoProvider>
+      </>
     </div>
   );
 }
